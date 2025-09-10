@@ -1,51 +1,44 @@
-# Endpoint Detection Tool (EDT)
+# Endpoint Detection & Response (EDR) with Wazuh Cloud
 
-🚨 **Hands-on SOC Project** – This lab simulates an Endpoint Detection & Telemetry (EDT) system designed to collect, analyze, and detect suspicious activities on endpoints.  
-The goal is to build security monitoring skills, strengthen SOC workflows, and document the full detection process.
+🚨 **Hands-on SOC Project** – In this lab, I deployed a cloud-hosted **Wazuh SIEM/EDR** to monitor a Kali Linux endpoint. The project simulates how SOC teams collect, analyze, and respond to suspicious activities on endpoints using **open-source tools** instead of expensive enterprise platforms.
 
 ---
 
 ## 🔎 Project Overview
-This project focuses on:
-- Collecting endpoint events (process, file, network logs).
-- Detecting suspicious or malicious activity using rules & signatures.
-- Forwarding events to a SIEM for correlation and alerting.
-- Documenting incident response steps as if working in a real SOC.
+This project demonstrates:
+- Collecting endpoint telemetry (processes, file activity, network logs).
+- Detecting brute-force, port scanning, and custom attack simulations.  
+- Visualizing security alerts in the **Wazuh Dashboard**.  
+- Mapping events to **MITRE ATT&CK techniques**.  
+- Practicing real SOC-style workflows from **attacker → defender**.  
 
 ---
 
 ## 🛠️ Tools & Technologies
-- Python (log collection & parsing)
-- Sysmon (endpoint event logging)
-- Splunk / ELK (event ingestion & detection)
-- Windows test environment
-- MITRE ATT&CK mapping
+- **Kali Linux** → Endpoint & attack simulation  
+- **Wazuh Cloud (Free Trial)** → Cloud-hosted SIEM/EDR platform  
+- **Wazuh Agent** → Endpoint telemetry collection  
+- **Nmap** → Reconnaissance & port scanning  
+- **Hydra** → Brute-force attack simulation  
+- **Custom Bash scripts** → Fake malware & persistence testing  
+- **Zoho Mail + Custom Domain** → Business email setup for sign-up  
 
 ---
 
 ## 🎯 Learning Objectives
-- Build a custom endpoint event detection workflow.
-- Understand how raw logs can be transformed into SOC alerts.
-- Practice detection engineering using realistic attacker simulations.
-- Document SOC-style investigation steps.
-
----
-
-## 📂 Repo Structure
-- `scripts/` → Python scripts for parsing logs  
-- `rules/` → Detection rules / queries  
-- `docs/` → Step-by-step documentation with screenshots  
-- `samples/` → Test attack logs  
+- Understand how SIEM/EDR platforms ingest and classify endpoint data.  
+- Build detection use cases for **common attacker behaviors**.  
+- Gain hands-on skills in **alert triage & SOC investigation workflows**.  
+- Prove that **open-source tools** can deliver enterprise-grade security.  
 
 ---
 
 ## 🚀 Next Steps
-1. Set up endpoint with Sysmon for logging.  
-2. Collect and parse events using Python.  
-3. Forward logs into SIEM for alerting.  
-4. Test detection using simulated attacker behavior.  
-5. Document results and findings.  
+1. Expand detection with **File Integrity Monitoring (FIM)**.  
+2. Test **response actions** like disabling processes or quarantining files.  
+3. Forward Wazuh alerts into **Splunk/ELK** for correlation practice.  
+4. Add more advanced attack simulations (reverse shells, persistence).  
 
 ---
 
-💡 *This is a learning-focused project designed to simulate SOC workflows. Not for production use.*  
+💡 *This project highlights practical SOC workflows and detection engineering using Wazuh Cloud. All steps are reproducible on a free trial setup.*  
