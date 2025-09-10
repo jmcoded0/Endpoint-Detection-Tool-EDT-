@@ -1,8 +1,20 @@
+
 # Endpoint Detection & Response (EDR) with Wazuh Cloud
 
-**Project by Johnson (jmcoded)**  
-
 This project documents my journey from a frustrating starting point to successfully deploying a live Endpoint Detection & Response (EDR) environment. The goal was to set up a **Wazuh SIEM** to monitor a Kali Linux machine and gain hands-on experience with a real-world security tool.
+
+---
+
+## 🛠 Tools & Technologies Used
+
+- **Kali Linux** → endpoint system & attack simulation  
+- **Wazuh Cloud (Free Trial)** → cloud-based SIEM & EDR platform  
+- **Wazuh Agent** → endpoint telemetry collection  
+- **Nmap** → reconnaissance & port scanning  
+- **Hydra** → brute-force attack simulation  
+- **Custom Bash scripts** → fake malware / persistence testing  
+- **Linux Sysinternals (systemctl, sudo, etc.)** → service & process control  
+- **Zoho Mail + Custom Domain** → business email setup for Wazuh sign-up  
 
 ---
 
@@ -53,9 +65,7 @@ On the Wazuh dashboard:
 3. Ran it on my Kali VM  
 
 The agent installed successfully, but I had to start the service manually.
-<img width="1278" height="798" alt="VirtualBox_Kali Linux_09_09_2025_03_38_11" src="https://github.com/user-attachments/assets/066d24c1-f304-46b0-a4c6-6e0a1dc0f18d" />
 
-#### Commands Used  
 ```bash
 # Start the agent service
 sudo systemctl start wazuh-agent
@@ -63,6 +73,21 @@ sudo systemctl start wazuh-agent
 # Verify it's running
 sudo systemctl status wazuh-agent
 ```
+
+✅ *Kali confirming Wazuh Agent running.*  
+<img width="1278" height="798" alt="VirtualBox_Kali Linux_09_09_2025_03_38_11" src="https://github.com/user-attachments/assets/066d24c1-f304-46b0-a4c6-6e0a1dc0f18d" />
+
+---
+
+## 🔍 SOC Insight: Why This Step Matters
+Installing the agent wasn’t just about “making it connect.”  
+Here’s why it matters in a real SOC workflow:
+
+- **Endpoint Visibility** → The agent turns my Kali box into a monitored endpoint. Every suspicious process, file change, or login attempt now feeds into the SIEM.  
+- **Data Enrichment** → Without the agent, Wazuh would only have limited system logs. With it, I get rich telemetry: process creation, file integrity monitoring, vulnerability scans.  
+- **Foundation for Detection** → This is what allows SOC teams to catch attacker activity *before* it escalates. Without endpoint data, you’re basically blind.  
+
+In short: this step transforms Wazuh from a “dashboard” into a real **EDR (Endpoint Detection & Response) tool**.
 
 ---
 
@@ -85,16 +110,6 @@ Now that the SIEM is live, I can move to the **core security work**:
 - 🔍 **Log Analysis:** Generate events on Kali and analyze them in Wazuh  
 - 🛡 **Threat Simulation:** Simulate attacks (e.g., failed SSH logins) to test detections  
 - ⚙️ **Rule Creation:** Write custom rules to monitor specific activities  
-
----
-
-## ✨ Key Takeaways
-This project taught me:  
-- Cybersecurity isn’t about having all the answers — it’s about **persistence**  
-- Solving problems across **cloud, DNS, and system levels** is what makes you grow  
-- Every small victory builds confidence for the bigger challenges ahead  
-
-🚀 *From frustration to a live SIEM — this project is proof that persistence pays off.*  
 
 ---
 
@@ -145,6 +160,16 @@ sudo chmod +x /bin/badscript.sh
 
 ---
 
+## 🔍 SOC Insight: Why These Attacks Matter
+Each of these attack steps ties directly to **MITRE ATT&CK tactics** and mirrors what real-world SOC analysts investigate daily:  
+
+- **Recon (Nmap):** Early discovery phase. Alerts help SOCs identify scanning hosts before intrusion.  
+- **Credential Access (Hydra brute force):** A common way attackers gain initial foothold. Detecting repeated failed logins is critical.  
+- **Privilege Escalation (Shadow file access):** Direct attempt to steal password hashes — red flag event.  
+- **Persistence (Malware drop):** Attackers drop backdoors/scripts to maintain access. File Integrity Monitoring catches this.  
+
+---
+
 ## Attack → Alert → MITRE Table
 
 | Attack Step | Detected Alert | Severity | MITRE Tactic | Suggested Response |
@@ -154,7 +179,7 @@ sudo chmod +x /bin/badscript.sh
 | Shadow File | Host Anomaly Event | High     | Credential Access | Review user activity |
 | Malware Drop| FIM Alert       | Medium   | Persistence     | Quarantine file |
 
-*Numbers are illustrative; replace with actual Wazuh metrics.*
+---
 
 # The Defender’s View: Wazuh’s Real-Time Intelligence
 
@@ -237,7 +262,7 @@ This project successfully showed that:
 - Integrate additional log sources (cloud services, network devices, endpoint logs)  
 - Build custom dashboards for real-time monitoring of critical events  
 - Implement automated response workflows for high-priority alerts  
-- Explore machine learning-based anomaly detection to enhance threat visibility
+- Explore machine learning-based anomaly detection to enhance threat visibility  
 
-This project closes the loop on a full hands-on SIEM/EDR lab while leaving room for growth toward a more enterprise-grade environment.
+🚀 *From frustration to a live SIEM — this project is proof that persistence pays off.*  
 ```
